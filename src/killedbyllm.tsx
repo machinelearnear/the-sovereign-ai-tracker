@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Search, ExternalLink, Info } from 'lucide-react';
 import { Benchmark, benchmarkData } from './data';
 
@@ -165,7 +165,7 @@ interface YearSectionProps {
 }
 
 const YearSection = ({ year, benchmarks }: YearSectionProps) => (
-  <div className="col-span-full">
+  <div className="col-span-full" data-year={year}>
     <div className="flex items-center gap-4 my-8">
       <h2 className="text-2xl font-medium text-gray-300">{year}</h2>
       <div className="h-px flex-1 bg-gradient-to-r from-gray-800 to-transparent" />
@@ -244,6 +244,7 @@ const KilledByLLM = () => {
               <Search className="absolute left-4 top-3.5 text-gray-500 pointer-events-none" size={18} />
               <input
                 type="text"
+                name="search"
                 placeholder="Search benchmarks, creators, or organizations..."
                 className="w-full pl-11 pr-4 py-3 bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-xl 
                            focus:outline-none focus:border-gray-700 focus:ring-1 focus:ring-gray-700 
@@ -255,6 +256,7 @@ const KilledByLLM = () => {
             
             {/* Category filter */}
             <select
+              name="category"
               className="px-4 py-3 bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-xl
                          focus:outline-none focus:border-gray-700 focus:ring-1 focus:ring-gray-700
                          text-gray-200 appearance-none cursor-pointer min-w-[160px] transition-all"
@@ -268,6 +270,7 @@ const KilledByLLM = () => {
 
             {/* Time range filter */}
             <select 
+              name="timeRange"
               className="px-4 py-3 bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-xl
                          focus:outline-none focus:border-gray-700 focus:ring-1 focus:ring-gray-700
                          text-gray-200 appearance-none cursor-pointer min-w-[140px] transition-all"
@@ -327,7 +330,7 @@ const KilledByLLM = () => {
             </h2>
             <p className="text-gray-300 leading-relaxed">
               For KilledByLLM <i>"Saturation"</i> means a benchmark can no longer measure the frontier.
-              While these benchmarks are still increadibly useful, valuable tools - they are no longer able to meaningfully contribute to the question of <i>"Can AI do X?"</i>
+              While these benchmarks are still increadibly useful, valuable tools — they are no longer able to meaningfully contribute to the question of <i>"Can AI do X?"</i>
             </p>
           </div>
 
@@ -401,10 +404,12 @@ const KilledByLLM = () => {
                 <ExternalLink size={14} />
               </a>
             </p>
+
           </div>
 
         </div>
       </div>
+      <p className='text-[8px] text-gray-500 text-center pb-2'>P.S. The em dashes on this page were lovingly handwritten by humans.</p>
     </div>
   );
 };

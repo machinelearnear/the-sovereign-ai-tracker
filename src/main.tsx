@@ -5,5 +5,5 @@ import { KilledByLLM } from './killedbyllm';
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <KilledByLLM />
-  </React.StrictMode>
+  </React.StrictMode>,
 ); 
