@@ -42,6 +42,15 @@
 // MMMU
 
 
+// Useful links
+// https://blog.google/technology/google-deepmind/google-gemini-ai-update-december-2024/#gemini-2-0-flash
+// https://www.reddit.com/r/LocalLLaMA/comments/1ff842v/evals_openai_o1/
+// https://www.nist.gov/news-events/news/2024/12/pre-deployment-evaluation-openais-o1-model
+// https://metr.github.io/autonomy-evals-guide/openai-o1-preview-report/
+// https://cdn.openai.com/o1-system-card-20241205.pdf
+// https://simonwillison.net/2024/Dec/20/live-blog-the-12th-day-of-openai/
+
+
 export type Benchmark = {
     name: string;
     description: string;
@@ -114,7 +123,8 @@ const benchmarkData: Benchmark[] = [
       organization: "AI2",
       links: {
         paper: "https://arxiv.org/abs/1803.05457",
-        website: "https://leaderboard.allenai.org/arc/submissions/get-started"
+        website: "https://leaderboard.allenai.org/arc/submissions/get-started",
+        evidence: "https://cdn.openai.com/papers/gpt-4.pdf"
       },
       cause: "Saturation"
     },
@@ -148,7 +158,8 @@ const benchmarkData: Benchmark[] = [
       organization: "OpenAI",
       links: {
         paper: "https://arxiv.org/abs/2107.03374",
-        github: "https://github.com/openai/human-eval"
+        github: "https://github.com/openai/human-eval",
+        evidence: "https://openai.com/index/hello-gpt-4o/"
       },
       cause: "Saturation"
     },
@@ -182,7 +193,8 @@ const benchmarkData: Benchmark[] = [
       organization: "UW & AI2",
       links: {
         paper: "https://arxiv.org/abs/1905.07830",
-        website: "https://rowanzellers.com/hellaswag/"
+        website: "https://rowanzellers.com/hellaswag/",
+        evidence: "https://cdn.openai.com/papers/gpt-4.pdf"
       },
       cause: "Saturation"
     },
@@ -199,7 +211,8 @@ const benchmarkData: Benchmark[] = [
       organization: "UC Berkeley",
       links: {
         paper: "https://arxiv.org/abs/2009.03300",
-        github: "https://github.com/hendrycks/test"
+        github: "https://github.com/hendrycks/test",
+        evidence: "https://cdn.openai.com/papers/gpt-4.pdf"
       },
       cause: "Saturation"
     },
@@ -216,7 +229,8 @@ const benchmarkData: Benchmark[] = [
       organization: "OpenAI",
       links: {
         paper: "https://arxiv.org/abs/2110.14168",
-        github: "https://github.com/openai/grade-school-math"
+        github: "https://github.com/openai/grade-school-math",
+        evidence: "https://cdn.openai.com/papers/gpt-4.pdf"
       },
       cause: "Saturation",
       causeDetails: "GSM8K is often considered contaminated because of its inclusion in several instruction following datasets"
@@ -251,7 +265,8 @@ const benchmarkData: Benchmark[] = [
       organization: "AI2 & UW",
       links: {
         paper: "https://arxiv.org/abs/1907.10641",
-        website: "https://winogrande.allenai.org/"
+        website: "https://winogrande.allenai.org/",
+        evidence: "https://cdn.openai.com/papers/gpt-4.pdf"
       },
       cause: "Saturation",
     },
@@ -268,7 +283,8 @@ const benchmarkData: Benchmark[] = [
       organization: "Google et al.",
       links: {
         paper: "https://arxiv.org/abs/2206.04615",
-        github: "https://github.com/google/BIG-bench"
+        github: "https://github.com/google/BIG-bench",
+        evidence: "https://arxiv.org/pdf/2204.02311"
       },
       cause: "Saturation",
       causeDetails: "BIG-Bench further faces contamination challenges as: (a) Its canary string has been reproduced by many major models (b) Its contamination has been highlighted in many papers i.e. GPT-4 technical report"
@@ -286,7 +302,8 @@ const benchmarkData: Benchmark[] = [
       organization: "Google & Stanford",
       links: {
         paper: "https://arxiv.org/abs/2210.09261",
-        github: "https://github.com/suzgunmirac/BIG-Bench-Hard"
+        github: "https://github.com/suzgunmirac/BIG-Bench-Hard",
+        evidence: "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf"
       },
       cause: "Saturation"
     },
@@ -337,7 +354,8 @@ const benchmarkData: Benchmark[] = [
       organization: "Google & Yale",
       links: {
         paper: "https://arxiv.org/abs/2311.07911",
-        github: "https://github.com/google-research/google-research/tree/master/instruction_following_eval"
+        github: "https://github.com/google-research/google-research/tree/master/instruction_following_eval",
+        evidence: "https://github.com/meta-llama/llama-models/blob/main/models/llama3_2/MODEL_CARD_VISION.md"
       },
       cause: "Saturation"
     },
