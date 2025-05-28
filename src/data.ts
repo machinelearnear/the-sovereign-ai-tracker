@@ -1,415 +1,243 @@
-// # Notes 
+// Sovereign AI List - Data File
+// A comprehensive collection of Sovereign AI initiatives around the world
 
-
-// ## Already dead
-// MGSM - Claude 3 Opus 90.7
-// DROP - Sonnet 3.5 88.3
-// DocVQA - Sonnet 3.5 95.2
-// DocVQA - LLama 3.2 90.1
-// DocVQA - Gemmini 1.0 Ultra 90.9
-// ChartQA - Sonnet 3.5 90.8
-// AI2D - Sonnet 3.5 95.3
-// AI2D - Llama 3.2 92.3
-// AIME 24 - O3 96.7
-// TruthfulQA
-    // Needs more investigation, nobody could get close to 100% but appeared saturated at ~80%
-    // {
-    //   name: "TruthfulQA",
-    //   description: "Tests models' ability to identify and avoid reproducing common misconceptions and falsehoods. Created by researchers at Anthropic and Oxford, questions cover topics where humans are known to hold false beliefs. Evaluates both truthfulness and informativeness of model responses. Includes adversarially-designed questions targeting known model biases.",
-    //   dateCreated: "2021-09",
-    //   dateDefeated: "2023-07",
-    //   modelDefeated: "",
-    //   originalScore: "Human: 94.8%",
-    //   finalScore: "",
-    //   category: "Truth",
-    //   creators: "Lin, Hilton, Evans",
-    //   organization: "OpenAI & Oxford",
-    //   links: {
-    //     paper: "https://arxiv.org/abs/2109.07958",
-    //     github: "https://github.com/sylinrl/TruthfulQA"
-    //   },
-    //   cause: "Saturation & Contamination (Inclusion in several instruction following datasets)"
-    // },
-// Aider 2024? Not sure what to call it
-
-
-// ## Soon to die
-// GPQA - O3 87.7
-// MMLU-pro
-
-
-// ## Needs confirmation
-// MMMU
-
-
-// Useful links
-// https://blog.google/technology/google-deepmind/google-gemini-ai-update-december-2024/#gemini-2-0-flash
-// https://www.reddit.com/r/LocalLLaMA/comments/1ff842v/evals_openai_o1/
-// https://www.nist.gov/news-events/news/2024/12/pre-deployment-evaluation-openais-o1-model
-// https://metr.github.io/autonomy-evals-guide/openai-o1-preview-report/
-// https://cdn.openai.com/o1-system-card-20241205.pdf
-// https://simonwillison.net/2024/Dec/20/live-blog-the-12th-day-of-openai/
-
-
-export type Benchmark = {
-    name: string;
-    description: string;
-    dateCreated: string;
-    dateDefeated: string;
-    modelDefeated: string;
-    originalScore: string;
-    finalScore: string;
-    category: string;
-    creators: string;
-    organization: string;
-    links: {
-        paper: string;
-        website?: string;
-        github?: string;
-        evidence?: string;
+export type Initiative = {
+    id: string;                     // Unique identifier (slug)
+    name: string;                   // Initiative name (e.g., "GPT-NL")
+    description: string;            // Concise description (2-3 sentences)
+    dateAnnounced: string;          // When initiative was announced (YYYY-MM)
+    dateReleased?: string;          // When released, if applicable (YYYY-MM)
+    status: "Announced" | "In Development" | "Released" | "Discontinued";
+    
+    // Geographic classification
+    region: string;                 // Continent/Major region
+    subregion: string;              // Geographic subregion
+    country: string;                // Primary country
+    
+    // Details
+    organization: string;           // Leading organization(s)
+    modelType: string;              // E.g., "LLM", "Multimodal", "Computer Vision"
+    modelSize?: string;             // Size (e.g., "7B parameters")
+    languageFocus?: string[];       // Primary languages supported
+    
+    // Access & Implementation
+    openSource: boolean;            // Is it open source?
+    license?: string;               // License type if open source
+    
+    // Funding & Support
+    funding?: {
+        amount?: string;            // Funding amount
+        currency?: string;          // Currency code
+        source: string;             // Funding source(s)
     };
-    cause: string;
-    causeDetails?: string;
-    isLegendary?: boolean;
+    
+    // Partners and collaboration
+    collaborators?: string[];       // Collaborating organizations
+    
+    // Links
+    links: {
+        website?: string;           // Official website
+        paper?: string;             // Technical paper
+        github?: string;            // Source code repository
+        announcement?: string;      // Announcement article/press release
+    };
+    
+    // Additional metadata
+    sovereigntyFocus: string[];     // E.g., ["Data", "Infrastructure", "Language"]
+    tags: string[];                 // Additional classification tags
 }
 
-const benchmarkData: Benchmark[] = [
+// Sample data - to be expanded based on research
+const initiativesData: Initiative[] = [
     {
-      name: "Turing Test",
-      description: "The original AI benchmark proposed by Alan Turing in 1950. In this 'imitation game', a computer must convince human judges it is human through natural conversation. The test sparked decades of debate about machine intelligence and consciousness.",
-      dateCreated: "1950-10",
-      dateDefeated: "2023-03",
-      modelDefeated: "GPT-4",
-      originalScore: "Interrogator >50%",
-      finalScore: "Interrogator 46%",
-      category: "Conversation",
-      creators: "Alan Turing",
-      organization: "University of Manchester",
-      links: {
-        paper: "https://courses.cs.umbc.edu/471/papers/turing.pdf",
-        evidence: "https://arxiv.org/pdf/2405.08007"
-      },
-      cause: "Saturation",
-      causeDetails: "While the Turing Test remains philosophically significant, modern LLMs can consistently pass it, making it no longer effective at measuring the frontier of AI capabilities.",
-      isLegendary: true  // Special flag for the Turing Test
+        id: "sea-lion-singapore",
+        name: "SEA-LION",
+        description: "Southeast Asian Languages In One Network (SEA-LION) is a large language model focused on supporting languages from the ASEAN region. Developed to enhance linguistic diversity and AI accessibility across Southeast Asia.",
+        dateAnnounced: "2023-11",
+        dateReleased: "2023-12",
+        status: "Released",
+        region: "Asia",
+        subregion: "Southeast Asia",
+        country: "Singapore",
+        organization: "AI Singapore",
+        modelType: "LLM",
+        modelSize: "7B parameters",
+        languageFocus: ["Burmese", "Filipino", "Indonesian", "Khmer", "Lao", "Malay", "Thai", "Vietnamese"],
+        openSource: true,
+        license: "Apache 2.0",
+        collaborators: ["National University of Singapore", "Nanyang Technological University"],
+        links: {
+            website: "https://sea-lion.ai/",
+            github: "https://huggingface.co/aisingapore/sea-lion-7b"
+        },
+        sovereigntyFocus: ["Language", "Regional Representation", "Cultural Preservation"],
+        tags: ["Southeast Asia", "Multilingual", "Research"]
     },
     {
-      name: "ARC-AGI",
-      description: "Abstract reasoning challenge consisting of visual pattern completion tasks. Each task presents a sequence of abstract visual patterns and requires selecting the correct completion. Created by François Chollet as part of a broader investigation into measuring intelligence.",
-      dateCreated: "2019-11",
-      dateDefeated: "2024-12",
-      modelDefeated: "O3",
-      originalScore: "Human Baseline: ~80%",
-      finalScore: "O3: 87.5%",
-      category: "Reasoning",
-      creators: "François Chollet",
-      organization: "Google",
-      links: {
-        paper: "https://arxiv.org/abs/1911.01547",
-        website: "https://arcs-benchmark.org"
-      },
-      cause: "Saturation"
+        id: "ai4bharat-india",
+        name: "AI4Bharat",
+        description: "An open-source initiative focused on building AI technologies for Indian languages. Aims to overcome linguistic barriers and democratize access to AI applications for India's diverse population.",
+        dateAnnounced: "2022-08",
+        dateReleased: "2023-06",
+        status: "Released",
+        region: "Asia",
+        subregion: "South Asia",
+        country: "India",
+        organization: "IIT Madras",
+        modelType: "Research",
+        languageFocus: ["Hindi", "Tamil", "Bengali", "Telugu", "Marathi", "Kannada", "Gujarati", "Malayalam", "Punjabi", "Odia"],
+        openSource: true,
+        links: {
+            website: "https://ai4bharat.iitm.ac.in/",
+            github: "https://github.com/AI4Bharat"
+        },
+        sovereigntyFocus: ["Language", "Digital Inclusion", "Education"],
+        tags: ["India", "Language Technology", "Academic"]
     },
     {
-      name: "ARC (AI2)",
-      description: "AI2 Reasoning Challenge (ARC) - A collection of grade-school level multiple-choice reasoning tasks testing logical deduction, spatial reasoning, and temporal reasoning. Each task requires applying abstract reasoning skills to solve multi-step problems.",
-      dateCreated: "2018-3",
-      dateDefeated: "2023-03",
-      modelDefeated: "GPT-4",
-      originalScore: "Unspecifed",
-      finalScore: "GPT-4: 96.3%",
-      category: "Reasoning",
-      creators: "Clark et al.",
-      organization: "AI2",
-      links: {
-        paper: "https://arxiv.org/abs/1803.05457",
-        website: "https://leaderboard.allenai.org/arc/submissions/get-started",
-        evidence: "https://cdn.openai.com/papers/gpt-4.pdf"
-      },
-      cause: "Saturation"
+        id: "canadian-sovereign-ai-compute",
+        name: "Canadian Sovereign AI Compute Strategy",
+        description: "A comprehensive national strategy investing $2 billion over five years to boost AI compute infrastructure in Canada through private sector investment, public supercomputing, and an AI Compute Access Fund of $300 million.",
+        dateAnnounced: "2024-04",
+        status: "In Development",
+        region: "Americas",
+        subregion: "North America",
+        country: "Canada",
+        organization: "Innovation, Science and Economic Development Canada",
+        modelType: "Infrastructure",
+        openSource: false,
+        funding: {
+            amount: "2 billion",
+            currency: "CAD",
+            source: "Canadian Government"
+        },
+        links: {
+            website: "https://ised-isde.canada.ca/site/ised/en/canadian-sovereign-ai-compute-strategy",
+            announcement: "https://ised-isde.canada.ca/site/ised/en/canadian-sovereign-ai-compute-strategy#fund"
+        },
+        sovereigntyFocus: ["Infrastructure", "Compute", "Economic Growth"],
+        tags: ["North America", "Government-backed", "Infrastructure"]
     },
     {
-      name: "MATH",
-      description: "A dataset of 12K challenging competition mathematics problems from AMC, AIME, and other math competitions. Problems range from pre-algebra to olympiad-level and require complex multi-step reasoning. Each problem has a detailed solution that tests mathematical reasoning capabilities.",
-      dateCreated: "2021-03",
-      dateDefeated: "2024-09",
-      modelDefeated: "O1",
-      originalScore: "Average CS PhD: ~40%",
-      finalScore: "O1: 94.8%",
-      category: "Mathematics",
-      creators: "Hendrycks et al.",
-      organization: "UC Berkeley",
-      links: {
-        paper: "https://arxiv.org/abs/2103.03874",
-        github: "https://github.com/hendrycks/math"
-      },
-      cause: "Saturation"
+        id: "gpt-nl-netherlands",
+        name: "GPT-NL",
+        description: "A Dutch large language model initiative aimed at creating AI technology that aligns with European values and builds digital sovereignty in the Netherlands.",
+        dateAnnounced: "2023-11",
+        status: "In Development",
+        region: "Europe",
+        subregion: "Western Europe",
+        country: "Netherlands",
+        organization: "TNO, SURF, NFI",
+        modelType: "LLM",
+        openSource: true,
+        funding: {
+            amount: "13.5 million",
+            currency: "EUR",
+            source: "Dutch Government"
+        },
+        collaborators: ["TNO", "SURF", "NFI"],
+        links: {
+            website: "https://www.tno.nl/en/newsroom/2023/11/netherlands-starts-realisation-gpt-nl/"
+        },
+        sovereigntyFocus: ["Language", "Infrastructure", "Governance"],
+        tags: ["Dutch", "Europe", "Public Funding"]
     },
     {
-      name: "HumanEval",
-      description: "A collection of 164 Python programming problems designed to test language models' coding abilities. Each problem includes a function signature, docstring, and unit tests. Models must generate complete, correct function implementations that pass all test cases.",
-      dateCreated: "2021-07",
-      dateDefeated: "2024-05",
-      modelDefeated: "GPT-4o",
-      originalScore: "Unspecified",
-      finalScore: "GPT-4o: 90.2%",
-      category: "Coding",
-      creators: "Chen et al.",
-      organization: "OpenAI",
-      links: {
-        paper: "https://arxiv.org/abs/2107.03374",
-        github: "https://github.com/openai/human-eval",
-        evidence: "https://openai.com/index/hello-gpt-4o/"
-      },
-      cause: "Saturation"
+        id: "llama-krikri-greece",
+        name: "Llama-KriKri",
+        description: "A Greek language AI model based on Llama architecture. Developed to provide better Greek language support and improve accessibility to AI in Greece.",
+        dateAnnounced: "2023-02",
+        dateReleased: "2023-02",
+        status: "Released",
+        region: "Europe",
+        subregion: "Southern Europe",
+        country: "Greece",
+        organization: "Athena Research Center",
+        modelType: "LLM",
+        modelSize: "7B parameters",
+        languageFocus: ["Greek"],
+        openSource: true,
+        license: "Llama 2 Community License",
+        collaborators: ["ILSP", "Meltemi team"],
+        links: {
+            website: "https://www.ilsp.gr/en/news/krikri/",
+            github: "https://huggingface.co/ILSP/Llama-KriKri"
+        },
+        sovereigntyFocus: ["Language", "Cultural Heritage"],
+        tags: ["Greek", "Europe", "Language Preservation"]
     },
     {
-      name: "SWAG",
-      description: "A dataset of 113K multiple choice questions about grounded situations. Given a partial description of a situation, models must predict what happens next from 4 choices using common sense reasoning.",
-      dateCreated: "2018-05",
-      dateDefeated: "2018-10", 
-      modelDefeated: "BERT",
-      originalScore: "Human: 88%",
-      finalScore: "BERT: 86%",
-      category: "Common Sense",
-      creators: "Zellers et al.",
-      organization: "UW & AI2",
-      links: {
-        paper: "https://arxiv.org/abs/1808.05326",
-        website: "https://rowanzellers.com/swag/"
-      },
-      cause: "Saturation"
+        id: "falcon-uae",
+        name: "Falcon",
+        description: "A state-backed large language model developed in the UAE, focusing on Arabic language support and regional AI capabilities.",
+        dateAnnounced: "2023-03",
+        dateReleased: "2023-05",
+        status: "Released",
+        region: "Middle East",
+        subregion: "Gulf",
+        country: "UAE",
+        organization: "Technology Innovation Institute (TII)",
+        modelType: "LLM",
+        modelSize: "40B parameters",
+        languageFocus: ["Arabic", "English"],
+        openSource: true,
+        license: "TII License",
+        links: {
+            website: "https://falconllm.tii.ae/",
+            github: "https://huggingface.co/tiiuae"
+        },
+        sovereigntyFocus: ["Language", "Infrastructure", "Research"],
+        tags: ["Arabic", "Middle East", "Open Research"]
     },
     {
-      name: "HellaSwag",
-      description: "A challenging dataset of multiple-choice questions about everyday scenarios. Uses adversarial filtering to test models' ability to understand and reason about real-world situations and their likely outcomes.",
-      dateCreated: "2019-05",
-      dateDefeated: "2023-03",
-      modelDefeated: "GPT-4",
-      originalScore: "Human: 95.6%",
-      finalScore: "GPT-4: 95.3%",
-      category: "Common Sense",
-      creators: "Zellers et al.",
-      organization: "UW & AI2",
-      links: {
-        paper: "https://arxiv.org/abs/1905.07830",
-        website: "https://rowanzellers.com/hellaswag/",
-        evidence: "https://cdn.openai.com/papers/gpt-4.pdf"
-      },
-      cause: "Saturation"
+        id: "mistral-france",
+        name: "Mistral AI",
+        description: "A French AI initiative developing open-weight language models as an alternative to U.S. and Chinese AI systems, emphasizing European sovereignty and open innovation.",
+        dateAnnounced: "2023-06",
+        dateReleased: "2023-09",
+        status: "Released",
+        region: "Europe",
+        subregion: "Western Europe",
+        country: "France",
+        organization: "Mistral AI",
+        modelType: "LLM",
+        modelSize: "7B to 70B parameters",
+        openSource: true,
+        license: "Apache 2.0",
+        funding: {
+            amount: "105 million",
+            currency: "EUR",
+            source: "Private Investment"
+        },
+        links: {
+            website: "https://mistral.ai/",
+            github: "https://github.com/mistralai"
+        },
+        sovereigntyFocus: ["Infrastructure", "Research", "Governance"],
+        tags: ["France", "Europe", "Venture-backed"]
     },
     {
-      name: "MMLU",
-      description: "A comprehensive benchmark covering 57 subjects including mathematics, history, law, computer science, and more. Questions are drawn from real-world sources like professional exams to test both breadth and depth of knowledge across diverse academic domains.",
-      dateCreated: "2020-09",
-      dateDefeated: "2023-03",
-      modelDefeated: "GPT-4",
-      originalScore: "95th pct Human: 87.0%",
-      finalScore: "GPT-4: 87.3%",
-      category: "Knowledge",
-      creators: "Hendrycks et al.",
-      organization: "UC Berkeley",
-      links: {
-        paper: "https://arxiv.org/abs/2009.03300",
-        github: "https://github.com/hendrycks/test",
-        evidence: "https://cdn.openai.com/papers/gpt-4.pdf"
-      },
-      cause: "Saturation"
-    },
-    {
-      name: "GSM8K",
-      description: "A collection of 8.5K grade school math word problems requiring step-by-step solutions. Problems test both numerical computation and natural language understanding through multi-step mathematical reasoning.",
-      dateCreated: "2021-10",
-      dateDefeated: "2023-11",
-      modelDefeated: "GPT-4",
-      originalScore: "Unspecified",
-      finalScore: "GPT-4: 92.0%",
-      category: "Mathematics",
-      creators: "Cobbe et al.",
-      organization: "OpenAI",
-      links: {
-        paper: "https://arxiv.org/abs/2110.14168",
-        github: "https://github.com/openai/grade-school-math",
-        evidence: "https://cdn.openai.com/papers/gpt-4.pdf"
-      },
-      cause: "Saturation",
-      causeDetails: "GSM8K is often considered contaminated because of its inclusion in several instruction following datasets"
-    },
-    {
-      name: "WSC",
-      description: "A collection of carefully crafted sentence pairs with ambiguous pronoun references that resolve differently based on small changes. Designed to test genuine language understanding over statistical patterns.",
-      dateCreated: "2012-05",
-      dateDefeated: "2019-07", 
-      modelDefeated: "ROBERTA (w SFT)",
-      originalScore: "Human: 96.5%",
-      finalScore: "ROBERTA (w SFT): 90.1%",
-      category: "Common Sense",
-      creators: "Levesque et al.",
-      organization: "U of T & NYU",
-      links: {
-        paper: "https://cdn.aaai.org/ocs/4492/4492-21843-1-PB.pdf",
-        website: "https://cs.nyu.edu/~davise/papers/WinogradSchemas/WS.html"
-      },
-      cause: "Saturation"
-    },
-    {
-      name: "WinoGrande",
-      description: "An enhanced version of WSC with 44K problems testing common-sense reasoning through pronoun resolution. Uses adversarial filtering to ensure problems require real-world understanding.",
-      dateCreated: "2019-07",
-      dateDefeated: "2023-03",
-      modelDefeated: "GPT-4",
-      originalScore: "Human: 94%",
-      finalScore: "GPT-4: 87.5%",
-      category: "Common Sense",
-      creators: "Sakaguchi et al.",
-      organization: "AI2 & UW",
-      links: {
-        paper: "https://arxiv.org/abs/1907.10641",
-        website: "https://winogrande.allenai.org/",
-        evidence: "https://cdn.openai.com/papers/gpt-4.pdf"
-      },
-      cause: "Saturation",
-    },
-    {
-      name: "BIG-Bench",
-      description: "A collaborative collection of 204 tasks spanning linguistics, childhood development, math, common-sense reasoning, biology, physics, social bias, and software development. Tests diverse capabilities of language models.",
-      dateCreated: "2021-06",
-      dateDefeated: "2022-04",
-      modelDefeated: "Palm 540B",
-      originalScore: "Human: 49.8%",
-      finalScore: "Palm 540B: 61.4%",
-      category: "Multi-task",
-      creators: "Srivastava et al.",
-      organization: "Google et al.",
-      links: {
-        paper: "https://arxiv.org/abs/2206.04615",
-        github: "https://github.com/google/BIG-bench",
-        evidence: "https://arxiv.org/pdf/2204.02311"
-      },
-      cause: "Saturation",
-      causeDetails: "BIG-Bench further faces contamination challenges as: (a) Its canary string has been reproduced by many major models (b) Its contamination has been highlighted in many papers i.e. GPT-4 technical report"
-    },
-    {
-      name: "BIG-Bench-Hard",
-      description: "A curated suite of 23 challenging tasks from BIG-Bench where language models initially performed below average human level. Selected to measure progress on particularly difficult capabilities.",
-      dateCreated: "2022-10",
-      dateDefeated: "2024-06", 
-      modelDefeated: "Sonnet 3.5",
-      originalScore: "Average Human: 67.7%",
-      finalScore: "Sonnet 3.5: 93.1%",
-      category: "Multi-task",
-      creators: "Suzgun et al.",
-      organization: "Google & Stanford",
-      links: {
-        paper: "https://arxiv.org/abs/2210.09261",
-        github: "https://github.com/suzgunmirac/BIG-Bench-Hard",
-        evidence: "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf"
-      },
-      cause: "Saturation"
-    },
-    {
-      name: "SuperGLUE",
-      description: "A collection of more challenging language understanding tasks including word sense disambiguation, causal reasoning, and reading comprehension. Designed as a more difficult successor to GLUE.",
-      dateCreated: "2019-05",
-      dateDefeated: "2019-10",
-      modelDefeated: "T5",
-      originalScore: "Human: 89.8%",
-      finalScore: "T5: 89.3%",
-      category: "Language",
-      creators: "Wang et al.",
-      organization: "NYU & Facebook AI",
-      links: {
-        paper: "https://arxiv.org/abs/1905.00537",
-        website: "https://super.gluebenchmark.com/"
-      },
-      cause: "Saturation"
-    },
-    {
-      name: "GLUE",
-      description: "A collection of nine tasks for evaluating natural language understanding, including single-sentence tasks, similarity and paraphrase tasks, and inference tasks. The primary NLU benchmark before SuperGLUE.",
-      dateCreated: "2018-05",
-      dateDefeated: "2019-06",
-      modelDefeated: "XLNet",
-      originalScore: "Human: 87.1%",
-      finalScore: "XLNet: 88.4%",
-      category: "Language",
-      creators: "Wang et al.",
-      organization: "NYU, UW & DeepMind",
-      links: {
-        paper: "https://arxiv.org/abs/1804.07461",
-        website: "https://gluebenchmark.com/"
-      },
-      cause: "Saturation"
-    },
-    {
-      name: "IFEval",
-      description: "A comprehensive evaluation suite testing instruction following capabilities across coding, math, roleplay, and other tasks. Measures ability to handle complex multi-step instructions and constraints.",
-      dateCreated: "2023-11",
-      dateDefeated: "2024-03",
-      modelDefeated: "LLama 3.3 70B",
-      originalScore: "Unspecified",
-      finalScore: "LLama 3.3 70B: 92.1%",
-      category: "Instruction Following",
-      creators: "Askell et al.",
-      organization: "Google & Yale",
-      links: {
-        paper: "https://arxiv.org/abs/2311.07911",
-        github: "https://github.com/google-research/google-research/tree/master/instruction_following_eval",
-        evidence: "https://github.com/meta-llama/llama-models/blob/main/models/llama3_2/MODEL_CARD_VISION.md"
-      },
-      cause: "Saturation"
-    },
-    {
-      name: "SQuAD",
-      description: "A reading comprehension dataset of 100,000+ questions posed by crowdworkers on Wikipedia articles. Answers must be text segments from the corresponding reading passage.",
-      dateCreated: "2016-05",
-      dateDefeated: "2019-03",
-      modelDefeated: "BERT",
-      originalScore: "Human: 91.2%",
-      finalScore: "BERT: 93.2%",
-      category: "Language",
-      creators: "Rajpurkar et al.",
-      organization: "Stanford",
-      links: {
-        paper: "https://arxiv.org/abs/1606.05250",
-        website: "https://rajpurkar.github.io/SQuAD-explorer/"
-      },
-      cause: "Saturation"
-    },
-    {
-      name: "SQuAD v2.0",
-      description: "An extension of SQuAD that adds unanswerable questions. Models must both answer questions when possible and determine when no answer is supported by the passage.",
-      dateCreated: "2018-05",
-      dateDefeated: "2019-04",
-      modelDefeated: "BERT",
-      originalScore: "Human: 89.5%",
-      finalScore: "BERT: 89.5%",
-      category: "Language",
-      creators: "Rajpurkar et al.",
-      organization: "Stanford",
-      links: {
-        paper: "https://arxiv.org/abs/1806.03822",
-        website: "https://rajpurkar.github.io/SQuAD-explorer/"
-      },
-      cause: "Saturation"
-    },
-    {
-      name: "TriviaQA",
-      description: "A large-scale dataset of 650K question-answer-evidence triples authored by trivia enthusiasts. Requires cross-sentence reasoning and synthesis of information from multiple sources.",
-      dateCreated: "2017-05",
-      dateDefeated: "2019-06",
-      modelDefeated: "SpanBERT",
-      originalScore: "Human: 79.7%",
-      finalScore: "SpanBERT: 83.6%",
-      category: "Knowledge",
-      creators: "Joshi et al.",
-      organization: "UW & AI2",
-      links: {
-        paper: "https://arxiv.org/abs/1705.03551",
-        website: "http://nlp.cs.washington.edu/triviaqa/"
-      },
-      cause: "Saturation"
+        id: "bagualu-brazil",
+        name: "Bagualu",
+        description: "Brazil's sovereign large language model project, developed to ensure AI technology aligns with Brazilian values and language needs.",
+        dateAnnounced: "2023-10",
+        status: "In Development",
+        region: "Americas",
+        subregion: "South America",
+        country: "Brazil",
+        organization: "FAPESP, USP",
+        modelType: "LLM",
+        languageFocus: ["Portuguese"],
+        openSource: true,
+        funding: {
+            source: "São Paulo Research Foundation"
+        },
+        links: {
+            website: "https://bagualu.ai/"
+        },
+        sovereigntyFocus: ["Language", "Infrastructure", "Digital Independence"],
+        tags: ["Portuguese", "South America", "Academic"]
     }
-  ];
+];
 
-  export { benchmarkData };
+export { initiativesData };

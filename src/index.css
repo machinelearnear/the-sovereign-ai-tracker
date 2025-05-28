@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Afacad:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-afacad: 'Afacad', sans-serif;
+  --font-space-grotesk: 'Space Grotesk', system-ui, sans-serif;
+  font-family: var(--font-space-grotesk);
+  line-height: 1.6;
+  font-weight: 400;
+  font-size: 16px;
+  
+  /* Typography scale */
+  --text-xs: 0.75rem;     /* 12px */
+  --text-sm: 0.875rem;    /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-lg: 1.125rem;    /* 18px */
+  --text-xl: 1.25rem;     /* 20px */
+  --text-2xl: 1.5rem;     /* 24px */
+  --text-3xl: 1.875rem;   /* 30px */
+  --text-4xl: 2.25rem;    /* 36px */
+  --text-5xl: 3rem;       /* 48px */
+  --text-6xl: 3.75rem;    /* 60px */
+  --text-7xl: 4.5rem;     /* 72px */
+  
+  /* Font weights */
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+}
+
+/* Dark mode styles (default) */
+.dark {
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #000;
+}
+
+/* Light mode styles */
+.light {
+  color-scheme: light;
+  color: #213547;
+  background-color: #ffffff;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+}
+
+/* Prose styling for consistent text treatment */
+@layer utilities {
+  .prose {
+    & p {
+      font-family: var(--font-space-grotesk);
+      font-size: var(--text-base);
+      line-height: 1.75;
+      margin-bottom: 1.25em;
+    }
+    
+    & h1 {
+      font-family: var(--font-space-grotesk);
+      font-size: var(--text-4xl);
+      font-weight: var(--font-bold);
+      line-height: 1.2;
+      margin-bottom: 0.75em;
+      letter-spacing: -0.025em;
+    }
+    
+    & h2 {
+      font-family: var(--font-space-grotesk);
+      font-size: var(--text-3xl);
+      font-weight: var(--font-bold);
+      line-height: 1.3;
+      margin-bottom: 0.75em;
+      letter-spacing: -0.025em;
+    }
+    
+    & h3 {
+      font-family: var(--font-space-grotesk);
+      font-size: var(--text-2xl);
+      font-weight: var(--font-semibold);
+      line-height: 1.4;
+      margin-bottom: 0.75em;
+    }
+    
+    & ul, & ol {
+      font-family: var(--font-space-grotesk);
+      font-size: var(--text-base);
+      line-height: 1.75;
+      margin-bottom: 1.25em;
+      padding-left: 1.5em;
+    }
+    
+    & li {
+      margin-bottom: 0.5em;
+    }
+    
+    & a {
+      color: theme('colors.blue.600');
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-thickness: 1px;
+      transition: color 0.2s ease;
+    }
+    
+    & a:hover {
+      color: theme('colors.blue.800');
+    }
+    
+    & code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.875em;
+      background-color: theme('colors.gray.100');
+      padding: 0.2em 0.4em;
+      border-radius: 0.25em;
+    }
+    
+    & pre {
+      background-color: theme('colors.gray.100');
+      border-radius: 0.5em;
+      padding: 1em;
+      overflow-x: auto;
+      margin-bottom: 1.5em;
+    }
+    
+    & pre code {
+      background-color: transparent;
+      padding: 0;
+      font-size: 0.9em;
+    }
+  }
+  
+  .dark .prose {
+    & a {
+      color: theme('colors.blue.400');
+    }
+    
+    & a:hover {
+      color: theme('colors.blue.300');
+    }
+    
+    & code {
+      background-color: theme('colors.gray.800');
+    }
+    
+    & pre {
+      background-color: theme('colors.gray.900');
+    }
+  }
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(-15%, 10%); }
+  60% { transform: translate(15%, 0%); }
+  70% { transform: translate(0%, 15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+}
+
+/* Theme transitions */
+.transition-theme {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
