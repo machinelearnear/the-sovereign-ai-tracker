@@ -1,10 +1,8 @@
-import { useState, useEffect, useMemo } from 'react';
-import { Search, ExternalLink, Globe, Code, FileText, Github, Sun, Moon, ChevronDown, Play, Mic, BookOpen, Linkedin, Twitter } from 'lucide-react';
-import { useTheme } from './components/ThemeContext';
+import { useState } from 'react';
+import { Search, ExternalLink, Globe, FileText, Github, ChevronDown, Linkedin, Twitter } from 'lucide-react';
 import { ThemeToggle } from './components/ThemeToggle';
 import MediaGrid from './components/MediaGrid';
 import { Initiative, initiativesData } from './data';
-import { MediaItem, mediaData } from './mediaData';
 
 // Utility function to create a map flag URL
 const getFlagUrl = (countryCode: string): string => {

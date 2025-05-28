@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { MediaItem, mediaData } from '../mediaData';
-import { Play, Mic, BookOpen, FileText, Calendar, FileBarChart2, Newspaper } from 'lucide-react';
+import { Play, BookOpen, FileText, FileBarChart2, Newspaper } from 'lucide-react';
 
 // Format date from YYYY-MM-DD to more readable format
 const formatDate = (dateString: string) => {
@@ -96,7 +96,7 @@ const MediaCard = ({ item }: { item: MediaItem }) => {
 // Media Grid Component
 const MediaGrid = () => {
   const [items, setItems] = useState<MediaItem[]>(mediaData);
-  const [visibleCount, setVisibleCount] = useState(6); // Initial number of visible items
+  const [visibleCount] = useState(6); // Initial number of visible items
   const [showAll, setShowAll] = useState(false);
   const [selectedType, setSelectedType] = useState("all");
   
