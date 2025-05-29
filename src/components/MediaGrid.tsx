@@ -2,16 +2,6 @@ import { useState, useEffect, useMemo } from 'react';
 import { MediaItem, mediaData } from '../mediaData';
 import { Play, BookOpen, FileText, FileBarChart2, Newspaper } from 'lucide-react';
 
-// Format date from YYYY-MM-DD to more readable format
-const formatDate = (dateString: string) => {
-  const date = new Date(dateString);
-  return new Intl.DateTimeFormat('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric'
-  }).format(date);
-};
-
 // Media Type Filter Component
 const MediaTypeFilter = ({ selectedType, setSelectedType }: { 
   selectedType: string; 
@@ -129,9 +119,6 @@ const MediaCard = ({ item }: { item: MediaItem }) => {
   // Get the country for this media item
   const country = getMediaItemCountry(item);
   
-  // Check if thumbnail exists or use fallback
-  const hasThumbnail = item.thumbnailUrl && !item.thumbnailUrl.endsWith('undefined');
-
   return (
     <a 
       href={item.sourceUrl}

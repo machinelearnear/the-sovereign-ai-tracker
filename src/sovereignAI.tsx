@@ -4,29 +4,6 @@ import { ThemeToggle } from './components/ThemeToggle';
 import MediaGrid from './components/MediaGrid';
 import { Initiative, initiativesData } from './data';
 
-// Utility function to create a map flag URL
-const getFlagUrl = (countryCode: string): string => {
-  return `https://flagcdn.com/32x24/${countryCode.toLowerCase()}.png`;
-};
-
-// Get country code from country name (simplified implementation)
-const getCountryCode = (country: string): string => {
-  const countryCodes: Record<string, string> = {
-    'Netherlands': 'nl',
-    'Greece': 'gr',
-    'UAE': 'ae',
-    'France': 'fr',
-    'Brazil': 'br',
-    'Singapore': 'sg',
-    'India': 'in',
-    'Canada': 'ca',
-    'Portugal': 'pt',
-    'Spain': 'es'
-    // To be expanded with more countries
-  };
-  return countryCodes[country] || 'un'; // Default to UN flag if country not found
-};
-
 // Get flag emoji for a country
 const getCountryFlagEmoji = (country: string): string => {
   const flagMap: Record<string, string> = {
@@ -44,17 +21,6 @@ const getCountryFlagEmoji = (country: string): string => {
   return flagMap[country] || '🏳️';
 };
 
-// Date formatting utility
-const formatDate = (dateString: string): string => {
-  const [year, month] = dateString.split('-');
-  const monthNames = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
-  ];
-  
-  const monthIndex = parseInt(month) - 1;
-  return `${monthNames[monthIndex]} ${year}`;
-};
 
 // Clean country name from initiative title
 const removeCountryFromTitle = (name: string, country: string): string => {
