@@ -50,6 +50,30 @@ export type Initiative = {
 // Sample data - to be expanded based on research
 const initiativesData: Initiative[] = [
     {
+        id: "meltemi-greece",
+        name: "Meltemi",
+        description: "The first open-source Large Language Model specifically for Greek language. Trained as a bilingual model with strong focus on Greek performance, showing an average improvement of 14.9% compared to Mistral-7B on Greek language tasks.",
+        dateAnnounced: "2024-03",
+        dateReleased: "2024-03",
+        status: "Released",
+        region: "Europe",
+        subregion: "Southern Europe",
+        country: "Greece",
+        organization: "Institute for Language and Speech Processing at Athena Research Center",
+        modelType: "LLM",
+        modelSize: "7B parameters",
+        languageFocus: ["Greek", "English"],
+        openSource: true,
+        license: "Apache 2.0",
+        links: {
+            website: "https://www.ilsp.gr/en/news/meltemi-en",
+            github: "https://huggingface.co/ILSP",
+            paper: "https://medium.com/institute-for-language-and-speech-processing/meltemi-a-large-language-model-for-greek-9f5ef1d4a10f"
+        },
+        sovereigntyFocus: ["Language", "Cultural Heritage", "Digital Inclusion"],
+        tags: ["Greek", "Europe", "Language Model"]
+    },
+    {
         id: "sea-lion-singapore",
         name: "SEA-LION",
         description: "Southeast Asian Languages In One Network (SEA-LION) is a large language model focused on supporting languages from the ASEAN region. Developed to enhance linguistic diversity and AI accessibility across Southeast Asia.",
@@ -237,6 +261,73 @@ const initiativesData: Initiative[] = [
         },
         sovereigntyFocus: ["Language", "Infrastructure", "Digital Independence"],
         tags: ["Portuguese", "South America", "Academic"]
+    },
+    {
+        id: "alia-spain",
+        name: "ALIA",
+        description: "Spain's pioneering public AI infrastructure initiative in the European Union, providing open and transparent language models to promote the use of Spanish and co-official languages (Catalan, Valencian, Basque, Galician) in AI development worldwide.",
+        dateAnnounced: "2024-05",
+        status: "Released",
+        region: "Europe",
+        subregion: "Southern Europe",
+        country: "Spain",
+        organization: "Government of Spain, Barcelona Supercomputing Center",
+        modelType: "Infrastructure",
+        languageFocus: ["Spanish", "Catalan", "Basque", "Galician"],
+        openSource: true,
+        links: {
+            website: "https://alia.gob.es/",
+            github: "https://huggingface.co/BSC-LT"
+        },
+        sovereigntyFocus: ["Language", "Infrastructure", "Cultural Heritage"],
+        tags: ["Spanish", "Europe", "Government-backed", "Infrastructure"]
+    },
+    {
+        id: "alia-kit-spain",
+        name: "ALIA Kit",
+        description: "A comprehensive language resource initiative providing access to Spanish and co-official languages models, datasets, training methodologies, and documentation as part of Spain's National AI Strategy.",
+        dateAnnounced: "2024-05",
+        status: "Released",
+        region: "Europe",
+        subregion: "Southern Europe",
+        country: "Spain",
+        organization: "Barcelona Supercomputing Center",
+        modelType: "Dataset",
+        languageFocus: ["Spanish", "Catalan", "Basque", "Galician"],
+        openSource: true,
+        links: {
+            website: "https://langtech-bsc.gitbook.io/alia-kit",
+            github: "https://huggingface.co/BSC-LT"
+        },
+        sovereigntyFocus: ["Language", "Research", "Digital Inclusion"],
+        tags: ["Spanish", "Europe", "Dataset", "Language Resources"]
+    },
+    {
+        id: "eurollm-portugal",
+        name: "EuroLLM",
+        description: "A collaborative European multilingual AI model supporting all 24 official EU languages, trained on the MareNostrum 5 supercomputer. Created to enhance Europe's digital sovereignty and foster AI innovation.",
+        dateAnnounced: "2024-01",
+        dateReleased: "2024-04",
+        status: "Released",
+        region: "Europe",
+        subregion: "Southern Europe",
+        country: "Portugal",
+        organization: "Instituto Superior Técnico",
+        modelType: "LLM",
+        modelSize: "9B and 1.7B parameters",
+        languageFocus: ["All 24 EU official languages"],
+        openSource: true,
+        license: "Apache 2.0",
+        collaborators: ["UTTER Project", "University of Edinburgh", "Instituto de Telecomunicações", "Université Paris-Saclay", "Aveni", "Sorbonne University", "Naver Labs", "University of Amsterdam"],
+        funding: {
+            source: "Horizon Europe, European Research Council, EuroHPC"
+        },
+        links: {
+            website: "https://eurollm.io/",
+            github: "https://huggingface.co/utter-project/EuroLLM-9B"
+        },
+        sovereigntyFocus: ["Language", "Infrastructure", "Digital Independence"],
+        tags: ["Multilingual", "Europe", "EU Languages", "Pan-European"]
     }
 ];
 

@@ -38,6 +38,83 @@ const MediaTypeFilter = ({ selectedType, setSelectedType }: {
   );
 };
 
+// Get country from media item
+const getMediaItemCountry = (item: MediaItem): string => {
+  // Map items to countries based on content analysis
+  const countryMap: Record<string, string> = {
+    // Research papers and articles about specific models
+    "Meltemi": "Greece",
+    "Greek": "Greece",
+    "SEA-LION": "Singapore",
+    "ASEAN": "Singapore",
+    "Southeast Asian": "Singapore",
+    "AI4Bharat": "India",
+    "Indian languages": "India",
+    "India": "India",
+    "Canadian": "Canada",
+    "Canada": "Canada",
+    "GPT-NL": "Netherlands",
+    "Netherlands": "Netherlands",
+    "Dutch": "Netherlands",
+    "KriKri": "Greece",
+    "Falcon": "UAE",
+    "Mistral": "France",
+    "France": "France",
+    "French": "France",
+    "Bagualu": "Brazil",
+    "Brazil": "Brazil",
+    "Brazilian": "Brazil",
+    "ALIA": "Spain",
+    "Spain": "Spain",
+    "Spanish": "Spain",
+    "EuroLLM": "Portugal",
+    "Portugal": "Portugal"
+  };
+  
+  // Look for keywords in the title to determine country
+  for (const [keyword, country] of Object.entries(countryMap)) {
+    if (
+      item.title.includes(keyword) || 
+      (item.creator && item.creator.includes(keyword))
+    ) {
+      return country;
+    }
+  }
+  
+  // If no specific country is found, return a default
+  return "Global";
+};
+
+// Get category-specific background colors
+const getCategoryBackground = (type: string): string => {
+  const backgroundColors: Record<string, string> = {
+    News: 'bg-gradient-to-br from-blue-500/90 to-blue-700/90 dark:from-blue-600/90 dark:to-blue-900/90',
+    Research: 'bg-gradient-to-br from-amber-500/90 to-amber-700/90 dark:from-amber-600/90 dark:to-amber-900/90',
+    Report: 'bg-gradient-to-br from-emerald-500/90 to-emerald-700/90 dark:from-emerald-600/90 dark:to-emerald-900/90',
+    Other: 'bg-gradient-to-br from-purple-500/90 to-purple-700/90 dark:from-purple-600/90 dark:to-purple-900/90'
+  };
+  
+  return backgroundColors[type] || 'bg-gradient-to-br from-gray-500/90 to-gray-700/90 dark:from-gray-600/90 dark:to-gray-900/90';
+};
+
+// Get flag emoji for a country
+const getCountryFlagEmoji = (country: string): string => {
+  const flagMap: Record<string, string> = {
+    'Spain': '🇪🇸',
+    'Portugal': '🇵🇹',
+    'Netherlands': '🇳🇱',
+    'Greece': '🇬🇷',
+    'UAE': '🇦🇪',
+    'France': '🇫🇷',
+    'Brazil': '🇧🇷',
+    'Singapore': '🇸🇬',
+    'India': '🇮🇳',
+    'Canada': '🇨🇦',
+    'Global': '🌎'
+  };
+  return flagMap[country] || '🌎';
+};
+
 // Media Card Component
 const MediaCard = ({ item }: { item: MediaItem }) => {
   // Type-specific icon mapping
@@ -49,21 +126,31 @@ const MediaCard = ({ item }: { item: MediaItem }) => {
     Other: <FileText size={16} className="text-white" />
   };
 
+  // Get the country for this media item
+  const country = getMediaItemCountry(item);
+  
+  // Check if thumbnail exists or use fallback
+  const hasThumbnail = item.thumbnailUrl && !item.thumbnailUrl.endsWith('undefined');
+
   return (
     <a 
       href={item.sourceUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="block rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all transform hover:scale-[1.02] bg-white dark:bg-gray-900"
+      className="block rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all bg-white dark:bg-gray-900 border border-transparent hover:border-gray-300 dark:hover:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
     >
       {/* Thumbnail with gradient overlay */}
       <div className="relative aspect-video">
-        <img 
-          src={item.thumbnailUrl} 
-          alt={item.title}
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
+        {item.type === "YouTube" && item.thumbnailUrl ? (
+          <img 
+            src={item.thumbnailUrl} 
+            alt={item.title}
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+        ) : (
+          <div className={`w-full h-full ${getCategoryBackground(item.type)}`}></div>
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-80"></div>
         
         {/* Type indicator */}
@@ -71,17 +158,19 @@ const MediaCard = ({ item }: { item: MediaItem }) => {
           {typeIcons[item.type]}
         </div>
         
-        {/* Date */}
-        <div className="absolute bottom-2 left-2 text-xs text-white">
-          {formatDate(item.date)}
+        {/* Country flag indicator */}
+        <div className="absolute bottom-2 right-11 bg-black/60 text-white rounded-full flex items-center justify-center w-7 h-7">
+          <span>{getCountryFlagEmoji(country)}</span>
+        </div>
+        
+        {/* Type tag instead of date */}
+        <div className="absolute bottom-2 left-2 px-2 py-0.5 text-xs bg-black/60 text-white rounded-full">
+          {item.type}
         </div>
       </div>
       
       {/* Content */}
       <div className="p-3">
-        <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">
-          {item.type}
-        </div>
           <h3 className="font-medium text-gray-800 dark:text-white line-clamp-2 mb-1 text-base">
             {item.title}
           </h3>
@@ -146,9 +235,15 @@ const MediaGrid = () => {
       <MediaTypeFilter selectedType={selectedType} setSelectedType={setSelectedType} />
       
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {visibleItems.map(item => (
-          <MediaCard key={item.id} item={item} />
-        ))}
+        {visibleItems.length > 0 ? (
+          visibleItems.map(item => (
+            <MediaCard key={item.id} item={item} />
+          ))
+        ) : (
+          <div className="col-span-full text-center py-12">
+            <p className="text-gray-500 dark:text-gray-400 text-lg">No items found</p>
+          </div>
+        )}
       </div>
       
       {filteredItems.length > visibleCount && !showAll && (

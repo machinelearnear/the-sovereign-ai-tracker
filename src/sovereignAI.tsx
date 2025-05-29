@@ -19,10 +19,29 @@ const getCountryCode = (country: string): string => {
     'Brazil': 'br',
     'Singapore': 'sg',
     'India': 'in',
-    'Canada': 'ca'
+    'Canada': 'ca',
+    'Portugal': 'pt',
+    'Spain': 'es'
     // To be expanded with more countries
   };
   return countryCodes[country] || 'un'; // Default to UN flag if country not found
+};
+
+// Get flag emoji for a country
+const getCountryFlagEmoji = (country: string): string => {
+  const flagMap: Record<string, string> = {
+    'Spain': '🇪🇸',
+    'Portugal': '🇵🇹',
+    'Netherlands': '🇳🇱',
+    'Greece': '🇬🇷',
+    'UAE': '🇦🇪',
+    'France': '🇫🇷',
+    'Brazil': '🇧🇷',
+    'Singapore': '🇸🇬',
+    'India': '🇮🇳',
+    'Canada': '🇨🇦'
+  };
+  return flagMap[country] || '🏳️';
 };
 
 // Date formatting utility
@@ -70,8 +89,8 @@ const removeCountryFromTitle = (name: string, country: string): string => {
   return cleanedName;
 };
 
-// Sector badge component (replacing the status badge)
-const SectorBadge = ({ organization }: { organization: string }) => {
+// Funding source tag component
+const FundingSourceTag = ({ organization }: { organization: string }) => {
   // Determine if government-funded or commercial based on organization name
   const isGovernmentFunded = 
     organization.toLowerCase().includes('government') || 
@@ -82,53 +101,68 @@ const SectorBadge = ({ organization }: { organization: string }) => {
     organization.toLowerCase().includes('tno') ||
     organization.toLowerCase().includes('fapesp');
   
-  const sector = isGovernmentFunded ? 'Government-funded' : 'Commercial';
+  const fundingSource = isGovernmentFunded ? 'Government-funded' : 'Commercial';
   
   const colorMap: Record<string, string> = {
-    'Government-funded': 'bg-blue-900/70 text-blue-200',
-    'Commercial': 'bg-purple-900/70 text-purple-200'
+    'Government-funded': 'bg-blue-100 dark:bg-blue-900/70 text-blue-700 dark:text-blue-200 border border-blue-300 dark:border-blue-800',
+    'Commercial': 'bg-purple-100 dark:bg-purple-900/70 text-purple-700 dark:text-purple-200 border border-purple-300 dark:border-purple-800'
   };
 
   return (
-    <span className={`px-2 py-0.5 text-xs font-medium rounded ${colorMap[sector]}`}>
-      {sector}
+    <span className={`px-2 py-0.5 text-xs font-medium rounded ${colorMap[fundingSource]}`}>
+      {fundingSource}
+    </span>
+  );
+};
+
+// Model Type tag component with styling similar to funding source tag
+const ModelTypeTag = ({ modelType }: { modelType: string }) => {
+  // Color mapping for different model types
+  const colorMap: Record<string, string> = {
+    'LLM': 'bg-purple-100 dark:bg-purple-900/70 text-purple-700 dark:text-purple-200 border border-purple-300 dark:border-purple-800',
+    'Infrastructure': 'bg-blue-100 dark:bg-blue-900/70 text-blue-700 dark:text-blue-200 border border-blue-300 dark:border-blue-800',
+    'Research': 'bg-amber-100 dark:bg-amber-900/70 text-amber-700 dark:text-amber-200 border border-amber-300 dark:border-amber-800',
+    'Dataset': 'bg-emerald-100 dark:bg-emerald-900/70 text-emerald-700 dark:text-emerald-200 border border-emerald-300 dark:border-emerald-800'
+  };
+
+  // Default color for unspecified model types
+  const tagClass = colorMap[modelType] || 'bg-gray-100 dark:bg-gray-900/70 text-gray-700 dark:text-gray-200 border border-gray-300 dark:border-gray-800';
+
+  return (
+    <span className={`px-2 py-0.5 text-xs font-medium rounded ${tagClass}`}>
+      {modelType}
     </span>
   );
 };
 
 // Initiative Card Component
 const InitiativeCard = ({ initiative }: { initiative: Initiative }) => {
-  const countryCode = getCountryCode(initiative.country);
+  // Use flag emojis for all countries
+  const flagEmoji = getCountryFlagEmoji(initiative.country);
+  
+  // Ensure ALIA initiatives use the same organization format
+  const displayOrganization = initiative.name.includes("ALIA") && initiative.country === "Spain"
+    ? "Government of Spain, Barcelona Supercomputing Center"
+    : initiative.organization;
   
   return (
-    <div className="group relative h-full flex flex-col initiative-card transform hover:scale-[1.02] transition-all duration-300">
+    <div className="group relative h-full flex flex-col initiative-card transition-all duration-300">
       <div className="absolute inset-0 bg-gradient-to-r from-gray-900/50 via-blue-900/20 to-gray-900/50 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
       
-      <div className="relative flex-1 flex flex-col bg-white/90 dark:bg-gray-950 rounded-lg p-4 border border-gray-300/50 dark:border-gray-800/50 backdrop-blur-xl transition-all duration-300 group-hover:border-gray-400/60 dark:group-hover:border-gray-700/50">
+      <div className="relative flex-1 flex flex-col bg-white/90 dark:bg-gray-950 rounded-lg p-4 border border-gray-300/50 dark:border-gray-800/50 backdrop-blur-xl transition-all duration-300 group-hover:border-gray-400 dark:group-hover:border-gray-700 group-hover:bg-gray-50 dark:group-hover:bg-gray-900">
         {/* Header */}
         <div className="flex items-start justify-between gap-4 mb-3">
           {/* Left side */}
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-1">
-              <img 
-                src={getFlagUrl(countryCode)} 
-                alt={`${initiative.country} flag`} 
-                className="w-6 h-4 rounded-sm object-cover shadow-sm"
-              />
+              <span className="text-xl">{flagEmoji}</span>
               <h3 className="text-lg font-medium tracking-tight text-gray-800 dark:text-white initiative-name font-sans">
                 {removeCountryFromTitle(initiative.name, initiative.country)}
               </h3>
             </div>
             <div className="flex items-center gap-2">
-              {/* Model Type badge with dynamic colors */}
-              <span className={`px-2 py-0.5 text-xs font-medium rounded tracking-wide 
-                ${initiative.modelType === 'LLM' ? 'bg-purple-900/70 text-purple-200' : 
-                  initiative.modelType === 'Infrastructure' ? 'bg-blue-900/70 text-blue-200' : 
-                  initiative.modelType === 'Research' ? 'bg-amber-900/70 text-amber-200' : 
-                  'bg-emerald-900/70 text-emerald-200'}`}>
-                {initiative.modelType}
-              </span>
-              <SectorBadge organization={initiative.organization} />
+              <ModelTypeTag modelType={initiative.modelType} />
+              <FundingSourceTag organization={displayOrganization} />
             </div>
           </div>
           
@@ -150,15 +184,11 @@ const InitiativeCard = ({ initiative }: { initiative: Initiative }) => {
           </p>
         </div>
 
-        {/* Organization and Date */}
+        {/* Organization */}
         <div className="text-base text-gray-400 mb-3">
           <div className="flex justify-between items-center">
-            <div>
-              <span className="text-gray-500">Organization:</span> {initiative.organization}
-            </div>
-            <div>
-              {/* Simplified date format without "Date:" prefix */}
-              <span>{formatDate(initiative.dateReleased || initiative.dateAnnounced).substring(0, 3)} {(initiative.dateReleased || initiative.dateAnnounced).split('-')[0]}</span>
+            <div className="flex-1">
+              <span className="text-gray-500">Organization:</span> {displayOrganization}
             </div>
           </div>
         </div>
@@ -215,11 +245,7 @@ const InitiativeCard = ({ initiative }: { initiative: Initiative }) => {
               )}
             </div>
 
-            {/* Active/Inactive Status */}
-            <div className={`text-xs px-2 py-0.5 rounded ${['Released', 'In Development', 'Announced'].includes(initiative.status) ? 
-              'bg-green-900/30 text-green-400' : 'bg-gray-800/50 text-gray-400'}`}>
-              {['Released', 'In Development', 'Announced'].includes(initiative.status) ? 'Active' : 'Inactive'}
-            </div>
+            {/* No status indicator here */}
           </div>
         </div>
       </div>
