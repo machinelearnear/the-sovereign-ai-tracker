@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { Search, ExternalLink, Globe, FileText, Github, ChevronDown, Linkedin, Twitter } from 'lucide-react';
+import { Search, Globe, FileText, Github, ChevronDown, Linkedin, Twitter } from 'lucide-react';
 import { ThemeToggle } from './components/ThemeToggle';
 import MediaGrid from './components/MediaGrid';
 import { Initiative, initiativesData } from './data';
+import { Link } from 'react-router-dom';
 
 // Get flag emoji for a country
 const getCountryFlagEmoji = (country: string): string => {
@@ -270,12 +271,6 @@ const SovereignAIList = () => {
   const [selectedModelType, setSelectedModelType] = useState('All');
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
   const [allExpanded, setAllExpanded] = useState(true);
-  const [aboutExpanded, setAboutExpanded] = useState(false);
-  const [contributeExpanded, setContributeExpanded] = useState(false);
-  
-  // Toggle functions for collapsible sections
-  const toggleAboutSection = () => setAboutExpanded(!aboutExpanded);
-  const toggleContributeSection = () => setContributeExpanded(!contributeExpanded);
   
   // Helper function to generate unique section keys
   const getSectionKey = (region: string, subregion: string) => `${region}-${subregion}`;
@@ -355,18 +350,33 @@ const SovereignAIList = () => {
     <div className="min-h-screen bg-gradient-to-b dark:from-black dark:via-gray-950 dark:to-black from-white to-white text-gray-800 dark:text-gray-100 transition-colors duration-300">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] dark:from-gray-900 dark:via-gray-950 dark:to-black transition-colors duration-300" />
       
-      {/* Theme Toggle */}
-      <div className="absolute top-4 right-4 z-10">
+      {/* Navigation and Theme Toggle */}
+      <div className="flex justify-between items-center absolute top-4 left-0 right-0 px-6 z-10">
+        <div className="flex space-x-2 items-center">
+          <Link 
+            to="/about"
+            className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors px-3 py-1.5 rounded-lg text-sm"
+          >
+            About
+          </Link>
+          <span className="text-gray-400">|</span>
+          <Link 
+            to="/contribute"
+            className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors px-3 py-1.5 rounded-lg text-sm"
+          >
+            How to Contribute
+          </Link>
+        </div>
         <ThemeToggle />
       </div>
       
       <div className="relative max-w-7xl mx-auto px-6 py-12">
         <header className="text-center mb-16">
-          <a href="/" className="block mb-2">
+          <Link to="/" className="block mb-2">
             <h1 className="font-[family-name:var(--font-afacad)] text-7xl font-normal text-black dark:text-white tracking-tight hover:opacity-80 transition-opacity cursor-pointer">
               The Sovereign AI List
             </h1>
-          </a>
+          </Link>
           <p className="text-xl text-gray-400 tracking-wide mb-6 font-sans">
             An open-source repository of small and large scale AI programs around the world
           </p>
@@ -478,134 +488,11 @@ const SovereignAIList = () => {
         </div>
 
         {/* Media Section */}
-        <div className="mt-20 border-t border-gray-300/50 dark:border-gray-800/50 pt-16">
+        <div className="mt-20 border-t border-gray-300/50 dark:border-gray-800/50 pt-16 mb-16">
           <h2 className="text-3xl font-medium mb-8 text-gray-700 dark:text-gray-300 transition-colors font-sans">
             Also Featured
           </h2>
           <MediaGrid />
-        </div>
-
-        {/* Information Section */}
-        <div className="mt-20 border-t border-gray-300/50 dark:border-gray-800/50 pt-16 text-center">
-          {/* More about the project */}
-          <div className="max-w-3xl mx-auto mb-16">
-            <div className="flex items-center gap-2 cursor-pointer mb-4" onClick={toggleAboutSection}>
-              <ChevronDown 
-                size={20} 
-                className={`transition-transform duration-300 ${aboutExpanded ? '' : '-rotate-90'} text-gray-500 dark:text-gray-400`} 
-              />
-              <h2 className="text-3xl font-medium bg-gradient-to-r dark:from-white dark:via-gray-100 dark:to-gray-300 from-gray-700 via-gray-800 to-gray-900 text-transparent bg-clip-text font-sans">
-                More about the project
-              </h2>
-            </div>
-            <div className={`text-gray-700 dark:text-gray-300 leading-relaxed text-left space-y-4 transition-all duration-500 overflow-hidden ${
-              aboutExpanded ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'
-            }`}>
-              <p>
-                The Sovereign AI List is your global tracker for a critical technological and geopolitical shift: the rise of national AI initiatives. 
-                As AI models become the new "information stack"—shaping culture, education, and national security—reliance on external AI capabilities 
-                creates significant vulnerabilities. This repository documents how nations worldwide are building their own "AI factories," aiming to embed 
-                their unique languages, values, and strategic interests directly into the foundational AI that will define their digital future.
-              </p>
-              <p>
-                Understanding this trend is vital. It's not just about technological independence; it's about who controls the lens through which 
-                information is processed and realities are shaped. Whether you're in tech, policy, research, or simply an informed citizen, this list 
-                provides insight into how the world is preparing for an AI-driven era where digital and cultural sovereignty are paramount.
-              </p>
-            </div>
-          </div>
-
-          {/* How to contribute */}
-          <div className="max-w-3xl mx-auto mb-16 pt-8 border-t border-gray-300/50 dark:border-gray-800/50">
-            <div className="flex items-center gap-2 cursor-pointer mb-4" onClick={toggleContributeSection}>
-              <ChevronDown 
-                size={20} 
-                className={`transition-transform duration-300 ${contributeExpanded ? '' : '-rotate-90'} text-gray-500 dark:text-gray-400`} 
-              />
-              <h2 className="text-3xl font-medium bg-gradient-to-r dark:from-white dark:via-gray-100 dark:to-gray-300 from-gray-700 via-gray-800 to-gray-900 text-transparent bg-clip-text font-sans">
-                How to contribute
-              </h2>
-            </div>
-            <div className={`text-gray-700 dark:text-gray-300 leading-relaxed space-y-4 transition-all duration-500 overflow-hidden ${
-              contributeExpanded ? 'max-h-[3000px] opacity-100' : 'max-h-0 opacity-0'
-            }`}>
-              <p className="text-left">
-                This project is open-source and welcomes contributions. There are two main ways to contribute:
-              </p>
-              
-              <div className="mt-8">
-                <h3 className="text-xl font-medium mb-2 text-left">1. Adding a National AI Initiative</h3>
-                <p className="text-left mb-4">To add a new sovereign AI initiative, edit the <code className="bg-gray-200 dark:bg-gray-800 px-1 py-0.5 rounded text-gray-800 dark:text-gray-200">src/data.ts</code> file and use this template structure:</p>
-                
-                <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg text-left overflow-auto">
-                  <pre className="text-sm text-gray-800 dark:text-gray-200 whitespace-pre-wrap">
-{`{
-  name: "Initiative Name",
-  country: "Country",
-  region: "Region",          // E.g., "Europe", "Asia"
-  subregion: "Subregion",    // E.g., "Western Europe", "South Asia"
-  modelType: "Type",         // Choose: "LLM", "Infrastructure", "Research", "Policy"
-  organization: "Organization Name",
-  description: "Detailed description of the initiative...",
-  dateAnnounced: "YYYY-MM", // Use this format
-  dateReleased: "YYYY-MM",  // If applicable
-  status: "Status",         // E.g., "Released", "In Development", "Announced"
-  links: {
-    website: "https://...",
-    github: "https://...",  // If applicable
-    paper: "https://..."    // If applicable
-  }
-}`}
-                  </pre>
-                </div>
-              </div>
-              
-              <div className="mt-8">
-                <h3 className="text-xl font-medium mb-2 text-left">2. Adding Media Content</h3>
-                <p className="text-left mb-4">To add content to the "Also Featured" section, edit the <code className="bg-gray-200 dark:bg-gray-800 px-1 py-0.5 rounded text-gray-800 dark:text-gray-200">src/mediaData.ts</code> file using this structure:</p>
-                
-                <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg text-left overflow-auto">
-                  <pre className="text-sm text-gray-800 dark:text-gray-200 whitespace-pre-wrap">
-{`{
-  id: "unique-id",
-  type: "Type",             // Choose: "YouTube", "News", "Research", "Report"
-  title: "Content Title",
-  creator: "Author/Publication/Channel",
-  date: "YYYY-MM-DD",
-  sourceUrl: "https://...", // Link to original content
-  thumbnailUrl: "https://...", // Image URL
-  youtubeId: "VIDEO_ID"     // Only for YouTube content
-}`}
-                  </pre>
-                </div>
-              </div>
-              
-              <ol className="list-decimal pl-6 mt-8 text-left">
-                <li className="mb-2">
-                  Fork the repository on GitHub
-                </li>
-                <li className="mb-2">
-                  Add or modify the data files using the templates above
-                </li>
-                <li className="mb-2">
-                  Submit a pull request with your changes
-                </li>
-                <li className="mb-2">
-                  Include reliable sources for all information
-                </li>
-              </ol>
-            </div>
-            
-            <a
-              href="https://github.com/machinelearnear/the-sovereign-ai-list"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-8 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
-            >
-              <span>Contribute on GitHub</span>
-              <ExternalLink size={14} />
-            </a>
-          </div>
         </div>
       </div>
 
@@ -624,7 +511,7 @@ const SovereignAIList = () => {
           </a>
           <a
             href="https://www.linkedin.com/in/nicolas-metallo/"
-            target="_blank"
+            target="_blank" 
             rel="noopener noreferrer"
             className="p-2 bg-white dark:bg-transparent rounded-full hover:text-gray-900 dark:hover:text-white text-gray-700 dark:text-white transition-colors"
             aria-label="LinkedIn"
