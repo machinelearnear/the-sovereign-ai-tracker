@@ -1,4 +1,4 @@
-# The Sovereign AI List
+# The Sovereign AI Tracker
 
 A global tracker for national AI initiatives focusing on technological sovereignty around the world.
 
@@ -6,7 +6,7 @@ A global tracker for national AI initiatives focusing on technological sovereign
 
 ## About The Project
 
-The Sovereign AI List is your global tracker for a critical technological and geopolitical shift: the rise of national AI initiatives. As AI models become the new "information stack"—shaping culture, education, and national security—reliance on external AI capabilities creates significant vulnerabilities. This repository documents how nations worldwide are building their own "AI factories," aiming to embed their unique languages, values, and strategic interests directly into the foundational AI that will define their digital future.
+The Sovereign AI Tracker is your global tracker for a critical technological and geopolitical shift: the rise of national AI initiatives. As AI models become the new "information stack"—shaping culture, education, and national security—reliance on external AI capabilities creates significant vulnerabilities. This repository documents how nations worldwide are building their own "AI factories," aiming to embed their unique languages, values, and strategic interests directly into the foundational AI that will define their digital future.
 
 Understanding this trend is vital. It's not just about technological independence; it's about who controls the lens through which information is processed and realities are shaped. Whether you're in tech, policy, research, or simply an informed citizen, this list provides insight into how the world is preparing for an AI-driven era where digital and cultural sovereignty are paramount.
 
@@ -24,7 +24,7 @@ Understanding this trend is vital. It's not just about technological independenc
 
 ## Project Structure
 
-The Sovereign AI List is a web application built with:
+The Sovereign AI Tracker is a web application built with:
 
 - React
 - TypeScript
@@ -68,7 +68,7 @@ npm run preview
 
 ## How to Contribute
 
-The Sovereign AI List is an open-source project that welcomes contributions. There are two main ways to contribute:
+The Sovereign AI Tracker is an open-source project that welcomes contributions. There are two main ways to contribute:
 
 ### 1. Adding a National AI Initiative
 

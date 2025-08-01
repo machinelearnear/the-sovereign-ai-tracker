@@ -24,7 +24,7 @@ const About = () => {
         
         {/* Attribution Statement */}
         <div className="mb-12 text-lg font-light italic border-l-4 border-blue-500 dark:border-blue-400 pl-6 py-2 text-gray-600 dark:text-gray-300">
-          The Sovereign AI List is a project by Nicolas Metallo that documents the rise of national AI initiatives around the world. The list tracks how countries are building their own AI capabilities to embed their unique languages, values, and strategic interests into foundation models. It serves as a global tracker for the technological and geopolitical shifts in AI sovereignty.
+          The Sovereign AI Tracker is a project by Nicolas Metallo that documents the rise of national AI initiatives around the world. The list tracks how countries are building their own AI capabilities to embed their unique languages, values, and strategic interests into foundation models. It serves as a global tracker for the technological and geopolitical shifts in AI sovereignty.
         </div>
         
         {/* Divider */}
@@ -33,7 +33,7 @@ const About = () => {
         {/* Existing Content */}
         <div className="space-y-6 text-gray-700 dark:text-gray-300 leading-relaxed">
           <p>
-            The Sovereign AI List is your global tracker for a critical technological and geopolitical shift: the rise of national AI initiatives. 
+            The Sovereign AI Tracker is your global tracker for a critical technological and geopolitical shift: the rise of national AI initiatives. 
             As AI models become the new "information stack"—shaping culture, education, and national security—reliance on external AI capabilities 
             creates significant vulnerabilities. This repository documents how nations worldwide are building their own "AI factories," aiming to embed 
             their unique languages, values, and strategic interests directly into the foundational AI that will define their digital future.

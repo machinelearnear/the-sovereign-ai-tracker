@@ -94,7 +94,7 @@ const Contribute = () => {
           
           <div className="mt-12 text-center">
             <a
-              href="https://github.com/machinelearnear/the-sovereign-ai-list"
+              href="https://github.com/machinelearnear/the-sovereign-ai-tracker"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"

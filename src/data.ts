@@ -1,4 +1,4 @@
-// Sovereign AI List - Data File
+// Sovereign AI Tracker - Data File
 // A comprehensive collection of Sovereign AI initiatives around the world
 
 export type Initiative = {

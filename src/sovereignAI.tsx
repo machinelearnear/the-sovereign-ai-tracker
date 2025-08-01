@@ -374,7 +374,7 @@ const SovereignAIList = () => {
         <header className="text-center mb-16">
           <Link to="/" className="block mb-2">
             <h1 className="font-[family-name:var(--font-afacad)] text-7xl font-normal text-black dark:text-white tracking-tight hover:opacity-80 transition-opacity cursor-pointer">
-              The Sovereign AI List
+              The Sovereign AI Tracker
             </h1>
           </Link>
           <p className="text-xl text-gray-400 tracking-wide mb-6 font-sans">
@@ -500,7 +500,7 @@ const SovereignAIList = () => {
         <p className="text-sm text-gray-600 dark:text-gray-400">Built with ❤️ & 🧉 between London and Madrid.</p>
         <div className="flex items-center gap-2">
           <a
-            href="https://github.com/machinelearnear/the-sovereign-ai-list"
+            href="https://github.com/machinelearnear/the-sovereign-ai-tracker"
             target="_blank"
             rel="noopener noreferrer"
             className="p-2 bg-white dark:bg-transparent rounded-full hover:text-gray-900 dark:hover:text-white text-gray-700 dark:text-white transition-colors"
