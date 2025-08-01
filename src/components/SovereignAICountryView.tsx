@@ -6,12 +6,11 @@ import { FilterControls } from './FilterControls';
 import { CountryGridView } from './CountryGridView';
 import { CountryDetailView } from './CountryDetailView';
 import MediaGrid from './MediaGrid';
-import { Initiative, initiativesData } from '../data';
+import { initiativesData } from '../data';
 import { 
   aggregateInitiativesByCountry, 
   getUniqueRegions, 
-  getCountryByName,
-  RegionData 
+  getCountryByName
 } from '../utils/countryAggregator';
 
 type ViewMode = 'grid' | 'detail';
@@ -21,7 +20,7 @@ export const SovereignAICountryView = () => {
   const [selectedRegion, setSelectedRegion] = useState('All');
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
-  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
+
   const [allExpanded, setAllExpanded] = useState(true);
 
   // Aggregate data by country and region
@@ -44,15 +43,7 @@ export const SovereignAICountryView = () => {
 
   // Toggle all sections (expand/collapse)
   const toggleAllSections = () => {
-    const newExpandState = !allExpanded;
-    setAllExpanded(newExpandState);
-    
-    const updatedState: Record<string, boolean> = {};
-    regionData.forEach(region => {
-      updatedState[region.region] = newExpandState;
-    });
-    
-    setExpandedSections(updatedState);
+    setAllExpanded(!allExpanded);
   };
 
   // Handle country selection

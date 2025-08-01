@@ -5,7 +5,6 @@ import { Initiative } from '../data';
 import { 
   aggregateInitiativesByCountry, 
   filterCountries, 
-  RegionData, 
   CountryData 
 } from '../utils/countryAggregator';
 
@@ -79,7 +78,7 @@ export const CountryGridView = ({
   onCountryClick
 }: CountryGridViewProps) => {
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
-  const [allExpanded, setAllExpanded] = useState(true);
+  const [allExpanded] = useState(true);
 
   // Aggregate initiatives by country and region
   const regionData = useMemo(() => {
@@ -103,19 +102,7 @@ export const CountryGridView = ({
     }));
   };
   
-  // Toggle all sections (expand/collapse)
-  const toggleAllSections = () => {
-    const newExpandState = !allExpanded;
-    setAllExpanded(newExpandState);
-    
-    const updatedState: Record<string, boolean> = {};
-    filteredRegionData.forEach(region => {
-      const sectionKey = getSectionKey(region.region);
-      updatedState[sectionKey] = newExpandState;
-    });
-    
-    setExpandedSections(updatedState);
-  };
+
 
   return (
     <div className="relative">
