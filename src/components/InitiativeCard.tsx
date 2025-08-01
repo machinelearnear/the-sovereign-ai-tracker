@@ -111,7 +111,7 @@ export const InitiativeCard = ({ initiative }: InitiativeCardProps) => {
                     <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
                             <span className="text-xl">{flagEmoji}</span>
-                            <h3 className="text-lg font-medium tracking-tight text-gray-800 dark:text-white initiative-name font-sans">
+                            <h3 className="text-lg font-medium tracking-tight text-gray-800 dark:text-white initiative-name font-geist">
                                 {removeCountryFromTitle(initiative.name, initiative.country)}
                             </h3>
                         </div>

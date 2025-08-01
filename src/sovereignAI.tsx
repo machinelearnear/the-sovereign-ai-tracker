@@ -123,7 +123,7 @@ const InitiativeCard = ({ initiative }: { initiative: Initiative }) => {
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-1">
               <span className="text-xl">{flagEmoji}</span>
-              <h3 className="text-lg font-medium tracking-tight text-gray-800 dark:text-white initiative-name font-sans">
+              <h3 className="text-lg font-medium tracking-tight text-gray-800 dark:text-white initiative-name font-geist">
                 {removeCountryFromTitle(initiative.name, initiative.country)}
               </h3>
             </div>
@@ -245,7 +245,7 @@ const RegionSection = ({
           size={24} 
           className={`transition-transform duration-300 ${isExpanded ? '' : '-rotate-90'} text-gray-500 dark:text-gray-400`} 
         />
-        <h2 className="text-3xl font-medium text-gray-700 dark:text-gray-300 transition-colors font-sans">
+        <h2 className="text-3xl font-medium text-gray-700 dark:text-gray-300 transition-colors font-geist">
           {region}: {subregion} 
           <span className="text-lg text-gray-500 dark:text-gray-400 ml-2">({initiativeCount})</span>
         </h2>
@@ -377,7 +377,7 @@ const SovereignAIList = () => {
               The Sovereign AI Tracker
             </h1>
           </Link>
-          <p className="text-xl text-gray-400 tracking-wide mb-6 font-sans">
+          <p className="text-xl text-gray-400 tracking-wide mb-6 font-geist">
             An open-source repository of small and large scale AI programs around the world
           </p>
         </header>
@@ -489,7 +489,7 @@ const SovereignAIList = () => {
 
         {/* Media Section */}
         <div className="mt-20 border-t border-gray-300/50 dark:border-gray-800/50 pt-16 mb-16">
-          <h2 className="text-3xl font-medium mb-8 text-gray-700 dark:text-gray-300 transition-colors font-sans">
+          <h2 className="text-3xl font-medium mb-8 text-gray-700 dark:text-gray-300 transition-colors font-geist">
             Also Featured
           </h2>
           <MediaGrid />

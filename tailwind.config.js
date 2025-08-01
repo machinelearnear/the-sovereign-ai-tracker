@@ -9,7 +9,8 @@ export default {
     extend: {
       fontFamily: {
         'afacad': ['var(--font-afacad)', 'sans-serif'],
-        'sans': ['var(--font-space-grotesk)', 'system-ui', 'sans-serif'],
+        'geist': ['var(--font-geist)', 'system-ui', 'sans-serif'],
+        'sans': ['var(--font-geist)', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         'xs': 'var(--text-xs)',
@@ -37,11 +38,11 @@ export default {
       typography: {
         DEFAULT: {
           css: {
-            fontFamily: 'var(--font-space-grotesk), system-ui, sans-serif',
+            fontFamily: 'var(--font-geist), system-ui, sans-serif',
             maxWidth: '65ch',
             h1: {
-              fontWeight: 700,
-              fontSize: 'var(--text-4xl)',
+              fontWeight: 400,
+              fontSize: 'var(--text-7xl)',
               letterSpacing: '-0.025em',
             },
             h2: {
@@ -54,7 +55,7 @@ export default {
               fontSize: 'var(--text-2xl)',
             },
             p: {
-              fontSize: 'var(--text-base)',
+              fontSize: 'var(--text-xl)',
               lineHeight: 1.75,
             },
           },

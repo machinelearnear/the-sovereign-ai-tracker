@@ -91,11 +91,11 @@ export const SovereignAICountryView = () => {
       <div className="relative max-w-7xl mx-auto px-6 py-12 pt-20 overflow-visible">
         <header className="text-center mb-12">
           <Link to="/" className="block mb-2">
-            <h1 className="font-[family-name:var(--font-afacad)] text-7xl font-normal text-black dark:text-white tracking-tight hover:opacity-80 transition-opacity cursor-pointer">
+            <h1 className="font-geist text-7xl font-normal text-black dark:text-white tracking-tight hover:opacity-80 transition-opacity cursor-pointer">
               The Sovereign AI Tracker
             </h1>
           </Link>
-          <p className="text-xl text-gray-400 tracking-wide mb-6 font-sans">
+          <p className="text-xl text-gray-400 tracking-wide mb-6 font-geist">
             An open-source repository of small and large scale AI programs around the world
           </p>
         </header>
@@ -138,7 +138,7 @@ export const SovereignAICountryView = () => {
         {/* Media Section - only show in grid view */}
         {viewMode === 'grid' && (
           <div className="mt-20 border-t border-gray-300/50 dark:border-gray-800/50 pt-16 mb-16">
-            <h2 className="text-3xl font-medium mb-8 text-gray-700 dark:text-gray-300 transition-colors font-sans">
+            <h2 className="text-3xl font-medium mb-8 text-gray-700 dark:text-gray-300 transition-colors font-geist">
               Also Featured
             </h2>
             <MediaGrid />

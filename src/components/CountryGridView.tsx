@@ -41,7 +41,7 @@ const RegionSection = ({
           size={24} 
           className={`transition-transform duration-300 ${isExpanded ? '' : '-rotate-90'} text-gray-500 dark:text-gray-400`} 
         />
-        <h2 className="text-3xl font-medium text-gray-700 dark:text-gray-300 transition-colors font-sans">
+        <h2 className="text-3xl font-medium text-gray-700 dark:text-gray-300 transition-colors font-geist">
           {region}
           <span className="text-lg text-gray-500 dark:text-gray-400 ml-2">
             ({countries.length} {countries.length === 1 ? 'country' : 'countries'}, {totalInitiatives} {totalInitiatives === 1 ? 'initiative' : 'initiatives'})
