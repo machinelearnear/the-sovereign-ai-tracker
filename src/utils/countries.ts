@@ -10,7 +10,8 @@ export const COUNTRY_FLAGS: Record<string, string> = {
   'Brazil': '🇧🇷',
   'Singapore': '🇸🇬',
   'India': '🇮🇳',
-  'Canada': '🇨🇦'
+  'Canada': '🇨🇦',
+  'USA': '🇺🇸'
 };
 
 export const COUNTRY_ISO_CODES: Record<string, string> = {
@@ -23,7 +24,8 @@ export const COUNTRY_ISO_CODES: Record<string, string> = {
   'Brazil': 'BRA',
   'Singapore': 'SGP',
   'India': 'IND',
-  'Canada': 'CAN'
+  'Canada': 'CAN',
+  'USA': 'USA'
 };
 
 export const COUNTRY_ADJECTIVES: Record<string, string[]> = {
@@ -34,7 +36,8 @@ export const COUNTRY_ADJECTIVES: Record<string, string[]> = {
   'UAE': ['Emirati'],
   'Brazil': ['Brazilian'],
   'Singapore': ['Singaporean'],
-  'India': ['Indian']
+  'India': ['Indian'],
+  'USA': ['American', 'U.S.']
 };
 
 export const getCountryFlag = (country: string): string => {

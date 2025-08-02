@@ -58,7 +58,14 @@ const getMediaItemCountry = (item: MediaItem): string => {
     "Spain": "Spain",
     "Spanish": "Spain",
     "EuroLLM": "Portugal",
-    "Portugal": "Portugal"
+    "Portugal": "Portugal",
+    // USA content
+    "Winning the AI Race": "USA",
+    "Trump": "USA",
+    "United States": "USA",
+    "U.S.": "USA",
+    "American": "USA",
+    "Andreessen Horowitz": "USA"
   };
   
   // Look for keywords in the title to determine country
@@ -100,6 +107,7 @@ const getCountryFlagEmoji = (country: string): string => {
     'Singapore': '🇸🇬',
     'India': '🇮🇳',
     'Canada': '🇨🇦',
+    'USA': '🇺🇸',
     'Global': '🌎'
   };
   return flagMap[country] || '🌎';

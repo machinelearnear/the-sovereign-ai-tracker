@@ -63,5 +63,65 @@ export const mediaData: MediaItem[] = [
         sourceProvider: "RAND Corporation",
         description: "Can Export Controls Create a U.S.-Led Global Artificial Intelligence Ecosystem?",
         tags: ["policy", "export controls", "AI ecosystem"]
+    },
+    {
+        id: "winning-ai-race-part1",
+        title: "Winning the AI Race Part 1: Michael Kratsios, Kelly Loeffler, Shyam Sankar, Chris Power",
+        type: "YouTube",
+        date: "2025-01-23",
+        youtubeId: "Nmw43vcSFhw",
+        sourceUrl: "https://www.youtube.com/watch?v=Nmw43vcSFhw",
+        creator: "All-In Podcast",
+        sourceProvider: "YouTube",
+        description: "This video kicks off the series with discussions from key figures on the pillars of the 'Winning the AI Race' plan. Michael Kratsios, former U.S. CTO, details the plan's focus on innovation, infrastructure, and fostering a robust AI ecosystem.",
+        tags: ["USA", "AI Strategy", "Innovation", "Infrastructure", "Policy"]
+    },
+    {
+        id: "winning-ai-race-part3",
+        title: "Winning the AI Race Part 3: Jensen Huang, Lisa Su, James Litinsky, Chase Lochmiller",
+        type: "YouTube",
+        date: "2025-01-23",
+        youtubeId: "8qT2SAJI_HQ",
+        sourceUrl: "https://www.youtube.com/watch?v=8qT2SAJI_HQ",
+        creator: "All-In Podcast",
+        sourceProvider: "YouTube",
+        description: "This part gathers leaders from the semiconductor and materials industries. Jensen Huang of Nvidia and Lisa Su of AMD delve into the future of AI chips and the critical need for a strong U.S. talent base.",
+        tags: ["USA", "Semiconductors", "AI Chips", "Nvidia", "AMD"]
+    },
+    {
+        id: "winning-ai-race-part4",
+        title: "Winning the AI Race Part 4: Scott Bessent, Howard Lutnick, Chris Wright, and Doug Burgum",
+        type: "YouTube",
+        date: "2025-01-23",
+        youtubeId: "9WkGNe27r_Q",
+        sourceUrl: "https://www.youtube.com/watch?v=9WkGNe27r_Q",
+        creator: "All-In Podcast",
+        sourceProvider: "YouTube",
+        description: "This segment concentrates on the financial and energy strategies for the AI race. It features Treasury Secretary Scott Bessent and Commerce Secretary Howard Lutnick discussing economic plans and a significant trade deal with Japan.",
+        tags: ["USA", "Finance", "Energy", "Trade", "Government"]
+    },
+    {
+        id: "trump-ai-speech-recap",
+        title: "Trump AI Speech & Action Plan, DC Summit Recap, Hot GDP Print, Trade Deals, Altman Warns No Privacy",
+        type: "YouTube",
+        date: "2025-01-01",
+        youtubeId: "jp9jDINt1mM",
+        sourceUrl: "https://www.youtube.com/watch?v=jp9jDINt1mM",
+        creator: "All-In Podcast",
+        sourceProvider: "YouTube",
+        description: "The hosts review their 'Winning the AI Race' summit held in Washington D.C. and provide an analysis of President Trump's speech. They break down the main elements of his AI action plan, such as deregulation, infrastructure investment, and the promotion of AI exports.",
+        tags: ["USA", "Trump", "AI Policy", "Summit", "Analysis"]
+    },
+    {
+        id: "winning-ai-race-part5-trump",
+        title: "Winning the AI Race Part 5: President Trump on the AI Action Plan",
+        type: "YouTube",
+        date: "2025-01-24",
+        youtubeId: "HmxbPH1PL_A",
+        sourceUrl: "https://www.youtube.com/watch?v=HmxbPH1PL_A",
+        creator: "All-In Podcast",
+        sourceProvider: "YouTube",
+        description: "This video presents the complete speech by President Donald Trump at the 'Winning the AI Race' event. He asserts that the United States will emerge victorious in the global AI competition and lays out his administration's corresponding action plan.",
+        tags: ["USA", "Trump", "Presidential Speech", "AI Strategy", "Executive Order"]
     }
 ];
